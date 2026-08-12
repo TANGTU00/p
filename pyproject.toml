@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "doctoral-building-element-models"
+version = "0.1.0"
+description = "Reusable training pipelines for doctoral building element inference models."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "pandas>=2.0",
+  "numpy>=1.24",
+  "scikit-learn>=1.3",
+  "xgboost>=2.0",
+  "lightgbm>=4.0",
+  "joblib>=1.3",
+  "PyYAML>=6.0",
+]
+
+[project.scripts]
+doctoral-models = "doctoral_models.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
