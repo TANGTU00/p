@@ -1,0 +1,64 @@
+name: interior_pr_two_stage
+pipeline: interior_pr
+project_column_candidates:
+  - Project ID
+  - Project
+feature_columns:
+  - Area max
+  - Area total
+  - Volume
+  - Bounding Box Length
+  - Bounding Box Width
+  - Bounding Box Height
+  - Global X
+  - Global Y
+  - Global Z
+  - Storey
+stage1_targets:
+  - SL
+  - Ss_Ceiling
+  - Ss_Floor
+  - Ss_SkirtingBoard
+  - Ss_WallCovering
+stage2_tasks:
+  Pr_Ceiling:
+    ss_target: Ss_Ceiling
+    slots:
+      - Pr_Ceiling1
+      - Pr_Ceiling2
+      - Pr_Ceiling3
+    no_label: No_Pr_Ceiling
+  Pr_Floor:
+    ss_target: Ss_Floor
+    slots:
+      - Pr_Floor1
+      - Pr_Floor2
+      - Pr_Floor3
+      - Pr_Floor4
+    no_label: No_Pr_Floor
+  Pr_SkirtingBoard:
+    ss_target: Ss_SkirtingBoard
+    slots:
+      - Pr_SkirtingBoard
+    no_label: No_Pr_SkirtingBoard
+  Pr_WallCovering:
+    ss_target: Ss_WallCovering
+    slots:
+      - Pr_WallCovering1
+      - Pr_WallCovering2
+      - Pr_WallCovering3
+    no_label: No_Pr_WallCovering
+test_size: 0.15
+validation_size: 0.15
+random_state: 42
+stage1_model_params:
+  n_estimators: 160
+  class_weight: balanced_subsample
+  random_state: 42
+  n_jobs: -1
+stage2_model_params:
+  n_estimators: 160
+  class_weight: balanced_subsample
+  random_state: 42
+  n_jobs: -1
+threshold: 0.25
