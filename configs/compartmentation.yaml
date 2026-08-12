@@ -1,0 +1,34 @@
+name: wall_slab_compartmentation
+pipeline: single_target
+algorithm: xgboost
+target: Compartmentation
+features:
+  - IfcEntity
+  - LoadBearing
+  - Storey
+  - IsExternal
+  - GlobalX
+  - GlobalY
+  - GlobalZ
+  - Bounding Box W
+  - Bounding Box H
+  - Bounding Box L
+  - Area max
+  - Area total
+  - Volume
+  - Ef
+  - Ss
+categorical_features:
+  - IfcEntity
+  - LoadBearing
+  - Storey
+  - IsExternal
+  - Ef
+  - Ss
+test_size: 0.2
+random_state: 42
+class_weighted_prediction: true
+model_params:
+  eval_metric: mlogloss
+  n_estimators: 300
+  random_state: 42
