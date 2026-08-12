@@ -1,0 +1,42 @@
+name: wall_slab_combustible
+pipeline: single_target
+algorithm: xgboost
+target: Combustible
+features:
+  - Ef
+  - IfcEntity
+  - LoadBearing
+  - Storey
+  - IsExternal
+  - Bounding Box W
+  - Bounding Box H
+  - Bounding Box L
+  - GlobalX
+  - GlobalY
+  - GlobalZ
+  - Area max
+  - Area total
+  - Volume
+  - Ss
+categorical_features:
+  - Ef
+  - IfcEntity
+  - LoadBearing
+  - Storey
+  - IsExternal
+  - Ss
+test_size: 0.2
+random_state: 42
+model_params:
+  eval_metric: mlogloss
+  learning_rate: 0.015
+  n_estimators: 2000
+  max_depth: 7
+  min_child_weight: 0.5
+  gamma: 0.0
+  subsample: 1.0
+  colsample_bytree: 1.0
+  reg_alpha: 0.0
+  reg_lambda: 0.5
+  tree_method: hist
+  random_state: 42
