@@ -1,0 +1,32 @@
+name: wall_slab_fire_rating
+pipeline: single_target
+algorithm: xgboost
+target: FireRating
+features:
+  - IfcEntity
+  - LoadBearing
+  - Storey
+  - IsExternal
+  - GlobalX
+  - GlobalY
+  - GlobalZ
+  - Bounding Box W
+  - Bounding Box H
+  - Bounding Box L
+  - Area max
+  - Area total
+  - Volume
+  - Ef
+  - Ss
+categorical_features:
+  - IfcEntity
+  - LoadBearing
+  - Storey
+  - IsExternal
+  - Ef
+  - Ss
+test_size: 0.2
+random_state: 42
+model_params:
+  eval_metric: mlogloss
+  random_state: 42
